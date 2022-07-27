@@ -11,7 +11,7 @@ A simple client-side tokenization example integration using Flex JavaScript SDK 
 
 ## Setup Instructions
 
-1. Modify `./src/main/webapp/credentials.properties` with the CyberSource REST credentials created through [EBC Portal](https://ebc2test.cybersource.com/).
+1. Add the following environment variables with the CyberSource REST credentials created through [EBC Portal](https://ebc2test.cybersource.com/).
 
   ```
   merchantId=YOUR MERCHANT ID

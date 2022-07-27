@@ -12,19 +12,17 @@ import com.cybersource.flex.sdk.model.EncryptionType;
 import com.cybersource.flex.sdk.model.FlexPublicKey;
 import com.cybersource.flex.sdk.model.KeysRequestParameters;
 import com.cybersource.flex.sdk.repackaged.JSONObject;
+
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.io.InputStream;
 
 public class FlexKeyProvider {
 
     private final FlexService flexService;
 
-    FlexKeyProvider(InputStream resource) {
-        MerchantCredentials merchantCredentials = null;
+    FlexKeyProvider() {
         try {
-            merchantCredentials = new MerchantCredentials(resource);
 
+            MerchantCredentials merchantCredentials = new MerchantCredentials();
             CGKCredentials credentials = new CGKCredentials();
             credentials.setEnvironment(CGKCredentials.Environment.CAS);
             credentials.setMid(merchantCredentials.getMerchantId());
@@ -34,12 +32,6 @@ public class FlexKeyProvider {
             flexService = FlexServiceFactory.createInstance(credentials);
         } catch (FlexException fe) {
             throw new RuntimeException(fe);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } finally {
-            if (merchantCredentials != null) {
-                merchantCredentials.destroy();
-            }
         }
     }
 
